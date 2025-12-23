@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                // example:
+                // sh 'npm install'
+                // sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // sh 'npm test'
+                // sh 'mvn test'
+            }
+        }
+
+        stage('Deploy22') {
+            steps {
+                echo 'Deploying application...'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
